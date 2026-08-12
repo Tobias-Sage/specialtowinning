@@ -21,11 +21,13 @@ export async function POST(request: NextRequest) {
       cancel_redirect: `${process.env.NEXT_PUBLIC_BASE_URL}/checkout-2`,
       ipn_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/payment/webhook`,
       allow_payment_methods: ["card"],
-      // 关键参数：启用嵌入式模式，隐藏品牌
+      // 嵌入式配置
       embed_style: "minimal",
       embed_pay_label: "Pay Now",
-      // ===== 新增：隐藏底部区域（包括取消链接） =====
+      // 隐藏额外元素
+      embed_hide_header: true,
       embed_hide_footer: true,
+      embed_hide_amount: true,
     };
 
     const response = await fetch(WALLETPLUG_API_URL, {
