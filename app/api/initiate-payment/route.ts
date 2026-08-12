@@ -7,7 +7,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { amount, currency, description, clickId } = body;
 
-    // 生成唯一订单号，包含 click_id 用于后续回传
     const refTrx = clickId
       ? `EMBED-${clickId}-${Date.now()}`
       : `EMBED-${Date.now()}`;
@@ -19,12 +18,14 @@ export async function POST(request: NextRequest) {
       description: description || "Special To Winning",
       success_redirect: `${process.env.NEXT_PUBLIC_BASE_URL}/payment/success`,
       failure_url: `${process.env.NEXT_PUBLIC_BASE_URL}/payment/failed`,
-      cancel_redirect: `${process.env.NEXT_PUBLIC_BASE_URL}`,
+      cancel_redirect: `${process.env.NEXT_PUBLIC_BASE_URL}/checkout-2`,
       ipn_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/payment/webhook`,
       allow_payment_methods: ["card"],
-      // 关键参数：启用嵌入式模式，隐藏 WalletPlug 品牌
+      // 关键参数：启用嵌入式模式，隐藏品牌
       embed_style: "minimal",
       embed_pay_label: "Pay Now",
+      // ===== 新增：隐藏底部区域（包括取消链接） =====
+      embed_hide_footer: true,
     };
 
     const response = await fetch(WALLETPLUG_API_URL, {
@@ -48,7 +49,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 返回 card_url 用于 iframe 嵌入
     return NextResponse.json({
       success: true,
       cardUrl: data.card_url || data.payment_url,
