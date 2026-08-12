@@ -181,7 +181,15 @@ export default function ClientCheckout() {
                 <div style={{ background: "#fafafa", borderRadius: "12px", padding: "4px", border: "1px solid #eee" }}>
                   <iframe
                     src={cardUrl}
-                    style={{ width: "100%", minHeight: "420px", border: "none", borderRadius: "10px", background: "transparent" }}
+                    style={{
+                      width: "100%",
+                      height: "480px",          // 固定高度，避免内部滚动
+                      border: "none",
+                      borderRadius: "10px",
+                      background: "transparent",
+                      overflow: "hidden",       // 隐藏滚动条
+                    }}
+                    scrolling="no"              // 禁用滚动（某些浏览器支持）
                     allow="payment"
                     title="Secure card payment"
                   />
