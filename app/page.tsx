@@ -3,13 +3,15 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+// ===== 禁用预渲染，解决 useSearchParams 错误 =====
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [cardUrl, setCardUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // 从 URL 获取 click_id
   const clickId = searchParams.get("click_id") || "";
 
   useEffect(() => {
