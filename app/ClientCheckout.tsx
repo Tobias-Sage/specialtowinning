@@ -82,71 +82,43 @@ export default function ClientCheckout() {
         </div>
 
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-          {/* 左栏：表单 */}
+          {/* 左栏：简化表单 */}
           <div style={{
             flex: "1 1 60%",
             padding: "32px 28px",
             minWidth: "300px",
           }}>
             <h2 style={{ fontSize: "20px", fontWeight: "600", margin: "0 0 6px 0", color: "#1a1a1a" }}>
-              Shipping address
+              Contact Information
             </h2>
             <p style={{ fontSize: "14px", color: "#888", margin: "0 0 20px 0" }}>
-              Enter your details below
+              Enter your name and email below
             </p>
 
             <div style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
+              display: "flex",
+              flexDirection: "column",
               gap: "14px",
             }}>
               <div>
                 <label style={{ fontSize: "13px", fontWeight: "500", color: "#333", display: "block", marginBottom: "4px" }}>
-                  First Name
+                  Full Name
                 </label>
-                <input type="text" placeholder="John" style={inputStyle} />
+                <input
+                  type="text"
+                  placeholder="John Doe"
+                  style={inputStyle}
+                />
               </div>
               <div>
-                <label style={{ fontSize: "13px", fontWeight: "500", color: "#333", display: "block", marginBottom: "4px" }}>
-                  Last Name
-                </label>
-                <input type="text" placeholder="Doe" style={inputStyle} />
-              </div>
-              <div style={{ gridColumn: "1 / -1" }}>
-                <label style={{ fontSize: "13px", fontWeight: "500", color: "#333", display: "block", marginBottom: "4px" }}>
-                  Address
-                </label>
-                <input type="text" placeholder="123 Main St" style={inputStyle} />
-              </div>
-              <div>
-                <label style={{ fontSize: "13px", fontWeight: "500", color: "#333", display: "block", marginBottom: "4px" }}>
-                  City
-                </label>
-                <input type="text" placeholder="New York" style={inputStyle} />
-              </div>
-              <div>
-                <label style={{ fontSize: "13px", fontWeight: "500", color: "#333", display: "block", marginBottom: "4px" }}>
-                  State
-                </label>
-                <input type="text" placeholder="NY" style={inputStyle} />
-              </div>
-              <div>
-                <label style={{ fontSize: "13px", fontWeight: "500", color: "#333", display: "block", marginBottom: "4px" }}>
-                  Zip Code
-                </label>
-                <input type="text" placeholder="10001" style={inputStyle} />
-              </div>
-              <div style={{ gridColumn: "1 / -1" }}>
                 <label style={{ fontSize: "13px", fontWeight: "500", color: "#333", display: "block", marginBottom: "4px" }}>
                   Email Address
                 </label>
-                <input type="email" placeholder="john@example.com" style={inputStyle} />
-              </div>
-              <div style={{ gridColumn: "1 / -1" }}>
-                <label style={{ fontSize: "13px", fontWeight: "500", color: "#333", display: "block", marginBottom: "4px" }}>
-                  Phone
-                </label>
-                <input type="tel" placeholder="+1 (555) 000-0000" style={inputStyle} />
+                <input
+                  type="email"
+                  placeholder="john@example.com"
+                  style={inputStyle}
+                />
               </div>
             </div>
 
@@ -183,13 +155,13 @@ export default function ClientCheckout() {
                     src={cardUrl}
                     style={{
                       width: "100%",
-                      height: "480px",          // 固定高度，避免内部滚动
+                      height: "480px",
                       border: "none",
                       borderRadius: "10px",
                       background: "transparent",
-                      overflow: "hidden",       // 隐藏滚动条
+                      overflow: "hidden",
                     }}
-                    scrolling="no"              // 禁用滚动（某些浏览器支持）
+                    scrolling="no"
                     allow="payment"
                     title="Secure card payment"
                   />
